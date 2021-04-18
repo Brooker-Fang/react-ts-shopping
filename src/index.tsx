@@ -6,7 +6,7 @@ import App from './App'
 import { API } from './config'
 import Routes from './routes/Routes'
 import store, { history } from './store'
-
+import './style.css'
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

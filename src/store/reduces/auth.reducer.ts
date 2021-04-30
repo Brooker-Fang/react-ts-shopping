@@ -2,13 +2,15 @@ import { AuthUnionType, REGISTER, REGISTER_FAIL, REGISTER_SUCCESS } from "../act
 export interface AuthState {
   register: {
     loaded: boolean,
-    success: boolean
+    success: boolean,
+    message: string
   }
 }
 const initialState:AuthState = {
   register: {
     loaded:false,
-    success: false
+    success: false,
+    message: ''
   }
 }
 export default function authReducer(state = initialState, action: AuthUnionType) {

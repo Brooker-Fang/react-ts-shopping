@@ -12,7 +12,7 @@ const Login = () => {
         <Item name="password" label="密码">
           <Input></Input>
         </Item>
-        <Item name="name" label="邮箱">
+        <Item name="email" label="邮箱">
           <Input></Input>
         </Item>
         <Item >

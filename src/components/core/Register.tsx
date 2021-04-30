@@ -1,6 +1,6 @@
 import {Button, Form, Input, Result} from 'antd'
 import { useEffect } from 'react'
-import { register, RegisterPayload } from '../../store/actions/auth.actions'
+import { register, RegisterPayload, resetSignUp } from '../../store/actions/auth.actions'
 import Layout from './Layout'
 import { useDispatch , useSelector} from 'react-redux'
 import { AppState } from '../../store/reduces'
@@ -27,6 +27,7 @@ const Register = () => {
   const showSuccess = () => {
     if(auth.register.loaded && auth.register.success) {
       return <Result
+      key="success"
       status="success"
       title="注册成功！"
       extra={[
@@ -37,9 +38,16 @@ const Register = () => {
     />
     }
   }
+  // 离开页面之前 重置状态
+  useEffect(() => {
+    return () => {
+      dispatch(resetSignUp())
+    }
+  }, [dispatch])
   const showError = () => {
     if(auth.register.loaded && !auth.register.success) {
       return <Result
+      key="error"
       status="warning"
       title="注册失败！"
       subTitle={auth.register.message}

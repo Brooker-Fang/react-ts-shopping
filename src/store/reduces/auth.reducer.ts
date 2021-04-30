@@ -1,6 +1,11 @@
-import { AuthUnionType, REGISTER, REGISTER_FAIL, REGISTER_SUCCESS, RESET_SIGNUP } from "../actions/auth.actions";
+import { AuthUnionType, REGISTER, REGISTER_FAIL, REGISTER_SUCCESS, RESET_SIGNUP, SIGN, SIGN_FAIL, SIGN_SUCCESS } from "../actions/auth.actions";
 export interface AuthState {
   register: {
+    loaded: boolean,
+    success: boolean,
+    message: string
+  }
+  signin: {
     loaded: boolean,
     success: boolean,
     message: string
@@ -8,6 +13,11 @@ export interface AuthState {
 }
 const initialState:AuthState = {
   register: {
+    loaded:false,
+    success: false,
+    message: ''
+  },
+  signin: {
     loaded:false,
     success: false,
     message: ''
@@ -47,6 +57,32 @@ export default function authReducer(state = initialState, action: AuthUnionType)
           loaded:false,
           success: false,
           message: ''
+        }
+      }
+    case SIGN:
+      return {
+        ...state,
+        signin: {
+          loaded:false,
+          success: false,
+          message: ''
+        }
+      }
+    case SIGN_SUCCESS:
+      return {
+        ...state,
+        signin: {
+          loaded: true,
+          success: true
+        }
+      }
+    case SIGN_FAIL: 
+      return {
+        ...state,
+        signin: {
+          loaded: true,
+          success: false,
+          message: action.message
         }
       }
     default:

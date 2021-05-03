@@ -56,19 +56,19 @@ const Register = () => {
   }
   const signupForm = () => (
     <Form form={form} onFinish={onFinish}>
-        <Item name="name" label="昵稱">
-          <Input></Input>
-        </Item>
-        <Item name="password" label="密码">
-          <Input></Input>
-        </Item>
-        <Item name="email" label="邮箱">
-          <Input></Input>
-        </Item>
-        <Item >
-          <Button type="primary" htmlType="submit">注册</Button>
-        </Item>
-      </Form>
+      <Item name="name" label="昵稱">
+        <Input></Input>
+      </Item>
+      <Item name="password" label="密码">
+        <Input></Input>
+      </Item>
+      <Item name="email" label="邮箱">
+        <Input></Input>
+      </Item>
+      <Item >
+        <Button type="primary" htmlType="submit">注册</Button>
+      </Item>
+    </Form>
   )
   return (
     <Layout  title="注册" subTitle="注册你的账号吧">

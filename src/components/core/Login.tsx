@@ -1,11 +1,20 @@
 import React from 'react'
 import {Button, Form, Input} from 'antd'
 import Layout from './Layout'
+import { useDispatch } from 'react-redux'
+import { signin, SigninPayLoad } from '../../store/actions/auth.actions'
+import { useForm } from 'antd/lib/form/Form'
 const Item = Form.Item
 const Login = () => {
+  const dispatch = useDispatch()
+  const onFinish = (value: SigninPayLoad) => {
+    console.log(value)
+    dispatch(signin(value))
+  }
+  const [form] = useForm()
   return (
     <Layout  title="登录" subTitle="登录你的账号吧">
-      <Form>
+      <Form  form={form} onFinish={onFinish}>
         <Item name="name" label="昵稱">
           <Input></Input>
         </Item>

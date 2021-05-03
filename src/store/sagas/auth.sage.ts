@@ -13,14 +13,12 @@ function* handleRegister(action: RegisterAction) {
 }
 // 登录
 interface signRes {
-  data: {
-    token: string
-  }
+  data: object
 }
 function* handleSignin(action: SigninAction) {
   try {
     let response:signRes = yield axios.post(`${API}/signin`, action.payload)
-    localStorage.setItem('jwt', response.data.token)
+    localStorage.setItem('jwt', JSON.stringify(response.data))
     yield put(signinSuccess())
   } catch (error) {
     yield put(signinFail(error.response.data.error))

@@ -7,6 +7,7 @@ import store, { history } from './store'
 import { API } from './config'
 import './style.css'
 console.log(API)
+// localStorage.removeItem('jwt')
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

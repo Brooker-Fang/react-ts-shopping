@@ -9,7 +9,7 @@ import PrivateRoute from '../components/admin/PrivateRoute'
 import AdminRoutes from '../components/admin/AdminRoutes'
 import AdminDashboard from '../components/admin/AdminDashboard'
 import AddCategory from '../components/admin/AddCategory'
-import AddProducts from '../components/admin/addProduct'
+import AddProducts from '../components/admin/AddProduct'
 const Routes = () => {
   return (<HashRouter>
     <Switch>

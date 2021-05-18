@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Button, Card, Col, Typography, Row } from 'antd'
 import { Link } from 'react-router-dom'
+import { Product } from '../../store/models/product'
 const { Title, Paragraph } = Typography
-export const ProductItem = () => {
+interface Props{
+  product: Product
+}
+export const ProductItem:FC<Props> = ({product}) => {
+  const { name, description, price, sold, createAt, category } = product
+  console.log(product)
   return (
     <Card
       hoverable
@@ -17,15 +23,15 @@ export const ProductItem = () => {
       </Button>
       ]}
     >
-    <Title level={5}>商品标题</Title>
-    <Paragraph ellipsis={{rows: 2}}>商品描述</Paragraph>
+    <Title level={5}>{name}</Title>
+    <Paragraph ellipsis={{rows: 2}}>{description}</Paragraph>
     <Row>
-      <Col span="12">销量</Col>
-      <Col span="12" style={{ textAlign: 'right'}}>价格</Col>
+      <Col span="12">销量：{sold}</Col>
+      <Col span="12" style={{ textAlign: 'right'}}>{price}</Col>
     </Row>
     <Row>
-      <Col span="12">上架时间</Col>
-      <Col span="12" style={{ textAlign: 'right'}}>所属分类</Col>
+      <Col span="12">{createAt}</Col>
+      <Col span="12" style={{ textAlign: 'right'}}>{category.name}</Col>
     </Row>
   </Card>
   )

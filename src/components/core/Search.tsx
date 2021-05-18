@@ -1,6 +1,6 @@
 import { Form, Input, Button, Divider, Row, Col, Select } from 'antd'
 import React from 'react'
-import { ProductItem } from './ProductItem'
+// import { ProductItem } from './ProductItem'
 
 export const Search = () => {
   return (
@@ -25,7 +25,7 @@ export const Search = () => {
     <Divider></Divider>
     <Row gutter={[16, 16]}>
       <Col span="6">
-        <ProductItem></ProductItem>
+        {/* <ProductItem></ProductItem> */}
       </Col>
     </Row>
     </>

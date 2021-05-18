@@ -1,3 +1,4 @@
+import { GET_PRODUCT, Get_PRODUCT_SUCCESS, ProductUnionType } from "../actions/product.actions"
 import { Product } from "../models/product"
 
 export interface ProductState {
@@ -26,22 +27,22 @@ const initialState: ProductState = {
 }
 export default function categoryReducer (state = initialState, action: ProductUnionType) {
   switch(action.type) {
-    case GET_CATEGORY:
+    case GET_PRODUCT:
       return {
         ...state,
-        category: {
+        [action.sortBy]: {
           loaded: false,
           success: false,
-          result: []
+          products: []
         }
       }
-    case GET_CATEGORY_SUCCESS: 
+    case Get_PRODUCT_SUCCESS: 
     return {
       ...state,
-      category: {
-        loaded: true,
-        success: true,
-        result: action.payload
+      [action.sortBy]: {
+        loaded: false,
+        success: false,
+        products: []
       }
     }
     default:

@@ -12,6 +12,7 @@ export interface GetProductAction {
 export interface GetProductSuccessAction {
   type: typeof Get_PRODUCT_SUCCESS,
   payload: Product[]
+  sortBy: string
 }
 export const getProduct = (
   sortBy: string, 
@@ -24,8 +25,9 @@ export const getProduct = (
     limit
   })
 
-  export const getProductSuccess = (payload: Product[]): GetProductSuccessAction => ({
+  export const getProductSuccess = (payload: Product[], sortBy: string): GetProductSuccessAction => ({
     type: Get_PRODUCT_SUCCESS,
-    payload
+    payload,
+    sortBy
   })
   export type ProductUnionType = GetProductAction | GetProductSuccessAction

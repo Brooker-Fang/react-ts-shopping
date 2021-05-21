@@ -2,7 +2,7 @@ import { GET_PRODUCT, Get_PRODUCT_SUCCESS, ProductUnionType } from "../actions/p
 import { Product } from "../models/product"
 
 export interface ProductState {
-  createAt: {
+  createdAt: {
     loaded: boolean,
     success: boolean,
     products: Product[]
@@ -14,7 +14,7 @@ export interface ProductState {
   }
 }
 const initialState: ProductState = {
-  createAt: {
+  createdAt: {
     loaded: false,
     success: false,
     products: []
@@ -31,9 +31,9 @@ export default function productReducer (state = initialState, action: ProductUni
       return {
         ...state,
         [action.sortBy]: {
+          ...state[action.sortBy === "createdAt"?'createdAt':'sold'],
           loaded: false,
           success: false,
-          products: []
         }
       }
     case Get_PRODUCT_SUCCESS: 

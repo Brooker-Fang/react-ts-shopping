@@ -10,5 +10,5 @@ export interface Product {
   sold?: number
   photo: FormData
   shipping: boolean
-  createAt: string
+  createdAt: string
 }

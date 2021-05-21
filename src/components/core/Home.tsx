@@ -12,9 +12,9 @@ import { Product } from '../../store/models/product'
 const { Title } = Typography
 const Home = () => {
   const dispatch = useDispatch()
-  const {createAt, sold} = useSelector<AppState, ProductState>(state => state.product)
+  const {createdAt, sold} = useSelector<AppState, ProductState>(state => state.product)
   useEffect(() => {
-    dispatch(getProduct('createAt'))
+    dispatch(getProduct('createdAt'))
     dispatch(getProduct('sold'))
   }, [dispatch])
   return (
@@ -25,9 +25,9 @@ const Home = () => {
       </Title>
       <Row gutter={[16, 16]}>
         {
-          createAt.products.map((item: Product) => {
+          createdAt.products.map((item: Product) => {
             return <Col span="6">
-              <ProductItem product={item}></ProductItem>
+              <ProductItem key={item._id} product={item}></ProductItem>
             </Col>
           })
         }
@@ -39,7 +39,7 @@ const Home = () => {
         {
           sold.products.map((item: Product) => {
             return <Col span="6">
-              <ProductItem product={item}></ProductItem>
+              <ProductItem key={item._id} product={item}></ProductItem>
             </Col>
           })
         }

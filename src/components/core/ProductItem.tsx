@@ -1,19 +1,20 @@
 import React, { FC } from 'react'
-import { Button, Card, Col, Typography, Row } from 'antd'
+import { Button, Card, Col, Typography, Row, Image } from 'antd'
 import { Link } from 'react-router-dom'
 import { Product } from '../../store/models/product'
+import { API } from '../../config'
 const { Title, Paragraph } = Typography
 interface Props{
   product: Product
 }
 export const ProductItem:FC<Props> = ({product}) => {
-  const { name, description, price, sold, createAt, category } = product
+  const { name, description, price, sold, createdAt, category } = product
   console.log(product)
   return (
     <Card
-      hoverable
-      style={{ width: 240 }}
-      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+      cover={
+        <Image preview={false} src={`${API}/product/photo/${product._id}`} alt={product.name}></Image>
+      }
       actions={[
         <Button type="link">
           <Link to="">查看详情</Link>
@@ -27,10 +28,10 @@ export const ProductItem:FC<Props> = ({product}) => {
     <Paragraph ellipsis={{rows: 2}}>{description}</Paragraph>
     <Row>
       <Col span="12">销量：{sold}</Col>
-      <Col span="12" style={{ textAlign: 'right'}}>{price}</Col>
+      <Col span="12" style={{ textAlign: 'right'}}>价格：{price}</Col>
     </Row>
     <Row>
-      <Col span="12">{createAt}</Col>
+      <Col span="12">{createdAt}</Col>
       <Col span="12" style={{ textAlign: 'right'}}>{category.name}</Col>
     </Row>
   </Card>

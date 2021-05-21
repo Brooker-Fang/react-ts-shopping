@@ -1,8 +1,17 @@
 import { Form, Input, Button, Divider, Row, Col, Select } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategory } from '../../store/actions/category.actions'
+import { AppState } from '../../store/reduces'
+import { CategoryState } from '../../store/reduces/category.reducer'
 // import { ProductItem } from './ProductItem'
 
 export const Search = () => {
+  const dispatch = useDispatch()
+  const { category } = useSelector<AppState, CategoryState>(state => state.category)
+  useEffect(() => {
+    dispatch(getCategory())
+  }, [dispatch])
   return (
     <>
     <Form layout="inline" initialValues={{category: 'All'}}>
@@ -12,6 +21,13 @@ export const Search = () => {
           <Select.Option value="All">
             所有分类
           </Select.Option>
+          {
+            category.result.map(item => {
+              return <Select.Option key={item._id} value={item._id}>
+              {item.name}
+            </Select.Option>
+            })
+          }
         </Select>
       </Form.Item>
       <Form.Item name="search">

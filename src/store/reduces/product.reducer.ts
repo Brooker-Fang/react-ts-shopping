@@ -1,4 +1,4 @@
-import { GET_PRODUCT, Get_PRODUCT_SUCCESS, ProductUnionType } from "../actions/product.actions"
+import { GET_PRODUCT, Get_PRODUCT_SUCCESS, ProductUnionType, SEARCH_PRODUCT_SUCCESS } from "../actions/product.actions"
 import { Product } from "../models/product"
 
 export interface ProductState {
@@ -12,6 +12,7 @@ export interface ProductState {
     success: boolean,
     products: Product[]
   }
+  search: Product[]
 }
 const initialState: ProductState = {
   createdAt: {
@@ -23,7 +24,8 @@ const initialState: ProductState = {
     loaded: false,
     success: false,
     products: []
-  }
+  },
+  search: []
 }
 export default function productReducer (state = initialState, action: ProductUnionType) {
   switch(action.type) {
@@ -45,6 +47,11 @@ export default function productReducer (state = initialState, action: ProductUni
         products: action.payload
       }
     }
+    case SEARCH_PRODUCT_SUCCESS: 
+      return {
+        ...state,
+        search: action.products
+      }
     default:
       return state
   }

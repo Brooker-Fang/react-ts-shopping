@@ -2,6 +2,7 @@ import { Form, Input, Button, Divider, Row, Col, Select } from 'antd'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategory } from '../../store/actions/category.actions'
+import { searchProduct } from '../../store/actions/product.actions'
 import { AppState } from '../../store/reduces'
 import { CategoryState } from '../../store/reduces/category.reducer'
 // import { ProductItem } from './ProductItem'
@@ -12,9 +13,12 @@ export const Search = () => {
   useEffect(() => {
     dispatch(getCategory())
   }, [dispatch])
+  const onFinish = (val: {category: string, search: string}) => {
+    dispatch(searchProduct(val))
+  }
   return (
     <>
-    <Form layout="inline" initialValues={{category: 'All'}}>
+    <Form onFinish={onFinish} layout="inline" initialValues={{category: 'All'}}>
       <Input.Group compact>
       <Form.Item name="category">
         <Select>

@@ -5,11 +5,13 @@ import { getCategory } from '../../store/actions/category.actions'
 import { searchProduct } from '../../store/actions/product.actions'
 import { AppState } from '../../store/reduces'
 import { CategoryState } from '../../store/reduces/category.reducer'
-// import { ProductItem } from './ProductItem'
+import { ProductState } from '../../store/reduces/product.reducer'
+import { ProductItem } from './ProductItem'
 
 export const Search = () => {
   const dispatch = useDispatch()
   const { category } = useSelector<AppState, CategoryState>(state => state.category)
+  const { search } = useSelector<AppState, ProductState>(state => state.product)
   useEffect(() => {
     dispatch(getCategory())
   }, [dispatch])
@@ -45,7 +47,11 @@ export const Search = () => {
     <Divider></Divider>
     <Row gutter={[16, 16]}>
       <Col span="6">
-        {/* <ProductItem></ProductItem> */}
+        {
+          search.map(item => {
+            return <ProductItem key={item._id} product={item}></ProductItem>
+          })
+        }
       </Col>
     </Row>
     </>

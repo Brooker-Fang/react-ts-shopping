@@ -3,6 +3,7 @@ import { Button, Card, Col, Typography, Row, Image } from 'antd'
 import { Link } from 'react-router-dom'
 import { Product } from '../../store/models/product'
 import { API } from '../../config'
+import moment from 'moment'
 const { Title, Paragraph } = Typography
 interface Props{
   product: Product
@@ -31,7 +32,7 @@ export const ProductItem:FC<Props> = ({product}) => {
       <Col span="12" style={{ textAlign: 'right'}}>价格：{price}</Col>
     </Row>
     <Row>
-      <Col span="12">{createdAt}</Col>
+      <Col span="12">上架时间{ moment(createdAt).format('YYYY-MM-DD')}</Col>
       <Col span="12" style={{ textAlign: 'right'}}>{category.name}</Col>
     </Row>
   </Card>

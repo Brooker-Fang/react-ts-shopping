@@ -10,7 +10,6 @@ interface Props{
 }
 export const ProductItem:FC<Props> = ({product}) => {
   const { name, description, price, sold, createdAt, category } = product
-  console.log(product)
   return (
     <Card
       cover={

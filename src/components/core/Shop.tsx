@@ -1,12 +1,21 @@
 import React from 'react'
 import Layout from './Layout'
-import { useSelector } from 'react-redux'
+import { Col, Row, Space } from 'antd'
+import { CheckBox } from './CheckBox'
+import { RadioBox } from './RadioBox'
 const Shop = () => {
-  const state = useSelector(state => state)
+  const filterDOM = () => (
+    <Space size="middle" direction="vertical">
+      <CheckBox></CheckBox>
+      <RadioBox></RadioBox>
+    </Space>
+  )
   return (
     <Layout title="前端商城" subTitle="挑选你喜欢的商品吧">
-      Shop
-      {JSON.stringify(state)}
+      <Row>
+        <Col span="4">{filterDOM()}</Col>
+        <Col span="4">right</Col>
+        </Row>
     </Layout>
   )
 }

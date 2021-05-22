@@ -1,8 +1,14 @@
-import React from 'react'
-import { List, Radio, Typography } from 'antd'
+import React, { FC } from 'react'
+import { List, Radio, RadioChangeEvent, Typography } from 'antd'
+import prices from '../../helpers/price'
 const { Title } = Typography
-const prices = [{price: "0-50"}, {price: "50-100"}]
-export const RadioBox = () => {
+interface Props {
+  handleFilter: (arg: number[]) => void
+}
+export const RadioBox:FC<Props> = ({handleFilter}) => {
+  const onChange = (event: RadioChangeEvent) => {
+    handleFilter(event.target.value)
+  }
   return (
     <>
       <Title level={4}>按照价格筛选</Title>
@@ -11,7 +17,7 @@ export const RadioBox = () => {
         dataSource={prices}
         renderItem={(item) => (
           <List.Item>
-            <Radio>{item.price}</Radio>
+            <Radio onChange={onChange} value={item.array}>{item.name}</Radio>
           </List.Item>
         )}></List>
       </Radio.Group>

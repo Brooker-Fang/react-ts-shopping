@@ -25,8 +25,8 @@ function* handleSearchProduct({payload: { search, category}}: SearchProductActio
   yield put(searchProductSuccess(res.data))
 }
 function* handlerFilterProduct(action: FilterProductAction) {
-  let res:{size: number, data: Product[]} = yield axios.post(`${API}/products/filter`, action.payload)
-  yield put(filterProductSuccess(res, action.payload.skip))
+  let res:{data:{size: number, data: Product[]}} = yield axios.post(`${API}/products/filter`, action.payload)
+  yield put(filterProductSuccess(res.data, action.payload.skip))
 }
 export default function* productSage() {
   yield takeEvery(GET_PRODUCT, handleGetProduct)

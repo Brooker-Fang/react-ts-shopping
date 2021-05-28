@@ -32,8 +32,8 @@ export const CheckBox:FC<Props> = ({handleFilter}) => {
       <List
        dataSource={category.result}
        renderItem={(item) => (
-        <List.Item>
-          <AnCheckBox>{item.name}</AnCheckBox>
+        <List.Item key={item.name}>
+          <AnCheckBox >{item.name}</AnCheckBox>
         </List.Item>
       )}></List>
     </>

@@ -61,7 +61,7 @@ export const getProduct = (
       sortBy?: string
       limit?: string
       skip: number
-      filter?: {
+      filters?: {
         category: string[]
         price: number[]
       }

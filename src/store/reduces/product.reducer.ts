@@ -76,7 +76,7 @@ export default function productReducer (state = initialState, action: ProductUni
           success: false,
           result: {
             size: 0,
-            data: []
+            data: state.filter.result.data
           }
         }
        }

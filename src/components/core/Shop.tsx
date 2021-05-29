@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
-import { Col, Row, Space } from 'antd'
+import { Button, Col, Empty, Row, Space } from 'antd'
 import { CheckBox } from './CheckBox'
 import { RadioBox } from './RadioBox'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,6 +17,7 @@ const Shop = () => {
     category: string[]
     price: number[]
   }>({category: [], price: []})
+  const [skip, setSkip] = useState<number>(0)
   const filterDOM = () => (
     <Space size="middle" direction="vertical">
       <CheckBox handleFilter={(filters: string[]) => {
@@ -36,14 +37,38 @@ const Shop = () => {
       })
     }
   </Row>
+  const loadMore = () => {
+    setSkip(skip + 4)
+  }
+  const loadMoreButton = () => {
+    return (
+      <Row>
+        {product.filter.result.size >=4 &&<Button onClick={loadMore}>加载更多</Button>}
+      </Row>
+    )
+  }
+  const noDate = () => {
+    return <Row>
+      {
+        product.filter.result.size === 0 && <Empty></Empty>
+      }
+    </Row>
+  }
+  useEffect(() => {
+    setSkip(0)
+  }, [myFilters])
   useEffect(() =>{
-    dispatch(filterProduct({filter: myFilters, skip: 0}))
-  }, [dispatch, myFilters])
+    dispatch(filterProduct({filters: myFilters, skip}))
+  }, [dispatch, myFilters, skip])
   return (
     <Layout title="前端商城" subTitle="挑选你喜欢的商品吧">
       <Row>
         <Col span="4">{filterDOM()}</Col>
-        <Col span="4">{productDOM()}</Col>
+        <Col span="4">
+          {productDOM()}
+          {loadMoreButton()}
+          {noDate()}
+          </Col>
         </Row>
     </Layout>
   )

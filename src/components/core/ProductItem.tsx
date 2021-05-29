@@ -17,7 +17,7 @@ export const ProductItem:FC<Props> = ({product}) => {
       }
       actions={[
         <Button type="link">
-          <Link to="">查看详情</Link>
+          <Link to={`/product/${product._id}`}>查看详情</Link>
         </Button>,
         <Button  type="link">
         <Link to="">加入购物车</Link>

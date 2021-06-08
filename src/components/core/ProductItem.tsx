@@ -7,22 +7,31 @@ import moment from 'moment'
 const { Title, Paragraph } = Typography
 interface Props{
   product: Product
+  showDetailBtn?: boolean
+  showCartBtn?: boolean
 }
-export const ProductItem:FC<Props> = ({product}) => {
+export const ProductItem:FC<Props> = ({product, showDetailBtn = true , showCartBtn = true}) => {
   const { name, description, price, sold, createdAt, category } = product
+  const showButtons = () => {
+    let buttonArray = []
+    if (showDetailBtn) {
+      buttonArray.push(<Button type="link">
+      <Link to={`/product/${product._id}`}>查看详情</Link>
+    </Button>)
+    } 
+    if (showCartBtn) {
+      buttonArray.push(<Button type="link">
+      <Link to={`/product/${product._id}`}>加入购物车</Link>
+    </Button>)
+    }
+    return buttonArray
+  }
   return (
     <Card
       cover={
         <Image preview={false} src={`${API}/product/photo/${product._id}`} alt={product.name}></Image>
       }
-      actions={[
-        <Button type="link">
-          <Link to={`/product/${product._id}`}>查看详情</Link>
-        </Button>,
-        <Button  type="link">
-        <Link to="">加入购物车</Link>
-      </Button>
-      ]}
+      actions={showButtons()}
     >
     <Title level={5}>{name}</Title>
     <Paragraph ellipsis={{rows: 2}}>{description}</Paragraph>

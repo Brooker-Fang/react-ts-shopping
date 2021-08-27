@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { CartItem, getCart } from '../../helpers/cart'
 import CartItemFc from './CartItemFc'
 import Layout from './Layout'
+import { Pay } from './Pay'
 import { TotalPrice } from './TotalPrice'
 
 const Cart = () => {
@@ -51,6 +52,9 @@ const Cart = () => {
           <Divider></Divider>
           <Row>
             <TotalPrice cart={cart} setTotalPrice={setTotalPrice}></TotalPrice>
+          </Row>
+          <Row>
+            <Pay></Pay>
           </Row>
         </Col>
       </Row>
